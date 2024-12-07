@@ -1,0 +1,579 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>STEP 03: 측정값 만들기 &#8212; DDD Seoul 2024 - Power BI를 통해 2024 파리 올림픽 즐겨보기</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/03-create-measures';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="STEP 04: 데이터 시각화 part1" href="04-data-visualization-part1.html" />
+    <link rel="prev" title="STEP 02: 데이터 모델링" href="02-data-modeling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DDD Seoul 2024 - Power BI를 통해 2024 파리 올림픽 즐겨보기</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Power BI를 통해 2024 파리 올림픽 즐겨보기
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-setup.html">STEP 01: 환경 설정</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-data-modeling.html">STEP 02: 데이터 모델링</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">STEP 03: 측정값 만들기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-data-visualization-part1.html">STEP 04: 데이터 시각화 part1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-data-visualization-part2.html">STEP 05: 데이터 시각화 part2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-data-visualization-part3.html">STEP 06: 데이터 시각화 part3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-data-visualization-part4.html">STEP 07: 데이터 시각화 part4</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop/issues/new?title=Issue%20on%20page%20%2Fdocs/03-create-measures.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/03-create-measures.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>STEP 03: 측정값 만들기</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 텍스트만 들어간 측정값 만들기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2 메달 집계 관련 여러 측정값 만들기</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="step-03">
+<h1>STEP 03: 측정값 만들기<a class="headerlink" href="#step-03" title="Link to this heading">#</a></h1>
+<p>원본 데이터 소스에서 데이터를 불러와 데이터 시각화 및 분석을 진행하다 보면, 데이터 소스에는 없던 새로운 변수들을 만들어서 시각화 및 분석을 진행해야 할 때가 있습니다. Power BI 생태계에서는 해당 변수들을 <code class="docutils literal notranslate"><span class="pre">측정값</span></code> 기능과 <code class="docutils literal notranslate"><span class="pre">DAX</span></code> 함수를 사용해 만들 수 있습니다.</p>
+<p>일반적인 상황에서는 데이터 시각화 및 분석을 하면서, 필요할 때 마다 그때 그때 적절한 <code class="docutils literal notranslate"><span class="pre">측정값</span></code>을 만들게 됩니다. 허나 이번 워크샵에서는 작업의 일관성을 위해 데이터 시각화를 하기전에 필요한 측정값들을 모두 만들겠습니다.</p>
+<section id="id1">
+<h2>3.1 텍스트만 들어간 측정값 만들기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic</span></code> 의미 체계 모델 내에서 상단 메뉴에 있는 <code class="docutils literal notranslate"><span class="pre">새</span> <span class="pre">테이블</span></code>을 클릭합니다. 수식 편집 화면이 뜨면 아래 첨부된 수식을 입력합니다. 그리고 엔터를 누릅니다.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">텍스트</span> <span class="n">보관용</span> <span class="n">테이블</span> <span class="o">=</span> 
+</pre></div>
+</div>
+<p><img alt="" src="../_images/03-create-measures-001.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>마우스 커서를 수식 편집 화면에 둔 상태에서 ‘Ctrl’ + ‘+’를 누르면 수식 편집 화면이 확대 됩니다.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>이번 실습에서는 다양한 수식을 사용하게 됩니다. 본 지시사항에 있는 수식들을 복사하여 Power BI Service에 붙여넣기하는 방법으로 작업하시면 편하게 작업이 가능합니다.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Power BI Desktop을 사용하면 보고서 편집 화면에서도 측정값을 추가할 수 있습니다. 그렇기 때문에 시각화 작업을 진행하는 도중에 별도로 화면을 전환하지 않고 편안하게 작업이 가능합니다. 허나 Power BI Service에서는 보고서 편집 화면에서는 측정값 추가 기능이 현재 (2024년 12월 기준) 지원되지 않으며 의미 체계 모델 편집 화면에서만 측정값 추가가 가능합니다.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>우측 <code class="docutils literal notranslate"><span class="pre">데이터</span></code> 패널에 <code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code>이 추가된 것을 확인하실 수 있습니다. <code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code> 테이블명 왼쪽에 있는 화살표를 눌러 테이블을 확장합니다. <code class="docutils literal notranslate"><span class="pre">Column</span></code> 필드가 있는 것을 확인합니다. 테이블을 만들면서 기본으로 함께 만들어진 필드입니다. 데이터 시각화할 때는 필요없기 때문에 숨김 처리를 해주겠습니다. 마우스를 <code class="docutils literal notranslate"><span class="pre">Column</span></code> 필드에 올려둔 상태에서 우측이 뜨는 눈(eye) 모양 아이콘을 클릭합니다. 숨김 처리가 되면 보고서 편집 화면 (<code class="docutils literal notranslate"><span class="pre">report-2024-paris-olympic</span></code>)에서 해당 필드가 보이지 않게 됩니다.
+<img alt="" src="../_images/03-create-measures-002.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code>에 새로운 측정값들을 추가하기 위해 <code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code>을 우측 마우스로 클릭합니다. 팝업창이 뜨면 <code class="docutils literal notranslate"><span class="pre">새</span> <span class="pre">측정값</span></code>을 클릭합니다.
+<img alt="" src="../_images/03-create-measures-003.png" /></p></li>
+<li><p>새로운 측정값에 대한 수식 편집 화면이 활성화 되면 아래 수식을 입력합니다. 그리고 엔터를 누릅니다.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">텍스트_개요</span> <span class="o">=</span> <span class="s2">&quot;개요&quot;</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/03-create-measures-004.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>우측 <code class="docutils literal notranslate"><span class="pre">데이터</span></code> 패널에 <code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code> 내에 <code class="docutils literal notranslate"><span class="pre">텍스트_개요</span></code> 필드가 추가된 것을 확인할 수 있습니다. 앞서 진행한 3번 4번 과정을 반복하여 두 개의 측정값을 더 만들겠습니다. 각각 아래의 수식을 사용하면 됩니다.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">텍스트_메달</span> <span class="n">세부</span> <span class="n">분석</span> <span class="o">=</span> <span class="s2">&quot;메달 세부 분석&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">텍스트_종목</span> <span class="n">세부</span> <span class="n">분석</span> <span class="o">=</span> <span class="s2">&quot;종목 세부 분석&quot;</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/03-create-measures-005.png" /></p>
+</section>
+<section id="id2">
+<h2>3.2 메달 집계 관련 여러 측정값 만들기<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>파리 올림픽 메달 관련 데이터 시각화 및 분석 진행 시 사용할 여러 측정값들을 만들어 보겠습니다.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">국가별</span> <span class="pre">종목별</span> <span class="pre">메달</span> <span class="pre">수</span></code> 테이블을 우측 마우스로 클릭한 뒤 <code class="docutils literal notranslate"><span class="pre">새</span> <span class="pre">측정값</span></code>을 클릭합니다.
+<img alt="" src="../_images/03-create-measures-006.png" /></p></li>
+<li><p>수식 편집 화면이 활성화 되면. 아래 수식을 입력한 뒤 엔터를 누릅니다. 1번과 2번 과정을 반복하여 새로운 측정값을 총 6개를 만듭니다.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">메달</span> <span class="n">보유</span> <span class="n">국가</span> <span class="o">=</span> <span class="n">DISTINCTCOUNT</span><span class="p">(</span><span class="s1">&#39;국가별 종목별 메달 수&#39;</span><span class="p">[</span><span class="n">국가</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">메달</span> <span class="n">보유</span> <span class="n">비율</span> <span class="o">=</span> <span class="p">[</span><span class="n">메달</span> <span class="n">보유</span> <span class="n">국가</span><span class="p">]</span> <span class="o">/</span> <span class="n">COUNTROWS</span><span class="p">(</span><span class="s1">&#39;국가 테이블&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">메달</span> <span class="n">합계</span> <span class="o">=</span> <span class="n">IF</span><span class="p">(</span>
+                <span class="n">SUM</span><span class="p">(</span><span class="s1">&#39;국가별 종목별 메달 수&#39;</span><span class="p">[</span><span class="n">합계</span><span class="p">])</span> <span class="o">=</span> <span class="n">BLANK</span><span class="p">(),</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="n">SUM</span><span class="p">(</span><span class="s1">&#39;국가별 종목별 메달 수&#39;</span><span class="p">[</span><span class="n">합계</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">메달당</span> <span class="n">국가</span> <span class="n">수</span> <span class="o">=</span> <span class="p">[</span><span class="n">메달</span> <span class="n">보유</span> <span class="n">국가</span><span class="p">]</span> <span class="o">/</span> <span class="p">[</span><span class="n">메달</span> <span class="n">합계</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">인원</span> <span class="n">당</span> <span class="n">메달</span> <span class="n">수</span> <span class="o">=</span> <span class="p">[</span><span class="n">메달</span> <span class="n">합계</span><span class="p">]</span> <span class="o">/</span> <span class="n">SUM</span><span class="p">(</span><span class="s1">&#39;국가 테이블&#39;</span><span class="p">[</span><span class="n">인원</span> <span class="n">수</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">최대</span> <span class="n">메달</span> <span class="n">비중</span><span class="p">(</span><span class="n">싹쓸이</span> <span class="n">비율</span><span class="p">)</span> <span class="o">=</span> <span class="n">SUM</span><span class="p">(</span><span class="s1">&#39;종목 테이블&#39;</span><span class="p">[</span><span class="n">한</span> <span class="n">국가의</span> <span class="n">최대</span> <span class="n">메달</span> <span class="n">수</span><span class="p">])</span> <span class="o">/</span> <span class="p">[</span><span class="n">메달</span> <span class="n">합계</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">국가별</span> <span class="pre">종목별</span> <span class="pre">메달</span> <span class="pre">수</span></code> 테이블 내에 만들어진 총 6개의 측정값들을 동시 선택합니다. Ctrl 누른 상태에서 하나씩 선택하면 동시 선택이 됩니다. 그리고 나서 좌측 <code class="docutils literal notranslate"><span class="pre">속성</span></code> 패널에 있는 <code class="docutils literal notranslate"><span class="pre">표시</span> <span class="pre">폴더</span></code>란에 <code class="docutils literal notranslate"><span class="pre">측정값</span> <span class="pre">모음</span></code>을 입력한 뒤 엔터를 누릅니다.
+<img alt="" src="../_images/03-create-measures-007.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">데이터</span></code> 패널을 확인해 보면 <code class="docutils literal notranslate"><span class="pre">국가별</span> <span class="pre">종목별</span> <span class="pre">메달</span> <span class="pre">수</span></code> 테이블 내에 <code class="docutils literal notranslate"><span class="pre">측정값</span> <span class="pre">모음</span></code> 폴더가 생성된 것을 확인할 수 있으며, 해당 폴더 내에 앞서 선택한 6개의 측정값들이 들어간 것을 확인할 수 있습니다. 여러 개의 필드들(측정값 및 열)을 묶어서 관리하고자 할 때 표시 폴더 기능을 사용할 수 있습니다. 상단에 브라우저 탭을 눌러 보고서 편집 페이지로 이동합니다.
+<img alt="" src="../_images/03-create-measures-008.png" /></p></li>
+<li><p>보고서 편집 화면 내의 우측 <code class="docutils literal notranslate"><span class="pre">데이터</span></code> 패널을 확인해보면 의미 체계 모델 내에서 편집한 결과물들이 존재하는 것을 확인할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code>이 추가되었으며, <code class="docutils literal notranslate"><span class="pre">국가별</span> <span class="pre">종목별</span> <span class="pre">메달</span> <span class="pre">수</span></code>에는 <code class="docutils literal notranslate"><span class="pre">측정값</span> <span class="pre">모음</span></code> 폴더가 생성되었으며 해당 폴더를 확장해보면 6개의 측정값들이 존재하는 것을 확인할 수 있습니다. 또한 <code class="docutils literal notranslate"><span class="pre">텍스트</span> <span class="pre">보관용</span> <span class="pre">테이블</span></code>에는 숨김 처리한 <code class="docutils literal notranslate"><span class="pre">Column</span></code> 열은 보이지 않는 것을 확인할 수 있습니다.</p></li>
+<li><p>보고서 캔버스를 확인해보면 <code class="docutils literal notranslate"><span class="pre">STEP</span> <span class="pre">02:</span> <span class="pre">데이터</span> <span class="pre">모델링</span></code> 전반부에서 만들어 둔 테이블 시각적 개체에 에러가 발생한 것을 확인할 수 있습니다. 기존에는 영어로된 테이블명을 기반으로 테이블 시각적 개체를 만들어 뒀지만, 모델링 후반부 과정에서 테이블 명을 영어에서 한국어로 변경했기 때문에 해당 필드를 찾지 못해서 발생하는 에러입니다. 해당 시각적 개체는 더 이상 필요하지 않기 때문에 시각적 개체를 클릭한 뒤 키보드에 있는 <code class="docutils literal notranslate"><span class="pre">Delete</span></code> 버튼을 눌러서 삭제합니다. 그리고 나서 화면 우측 하단에 있는 직사각형으로 된 아이콘을 눌러 캔버스 배율을 화면에 맞추어 줍니다.
+<img alt="" src="../_images/03-create-measures-009.png" /></p></li>
+<li><p>최종적으로 아래와 같은 화면이 나오면 데이터 시각화를 하기 위한 사전 준비가 모두 완료된 것입니다.
+<img alt="" src="../_images/03-create-measures-010.png" /></p></li>
+</ol>
+<p>축하합니다. 측정값 만들기 단계를 모두 완료하셨습니다.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02-data-modeling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">STEP 02: 데이터 모델링</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04-data-visualization-part1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">STEP 04: 데이터 시각화 part1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 텍스트만 들어간 측정값 만들기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2 메달 집계 관련 여러 측정값 만들기</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tony (Sungjin) Ahn
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,574 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>STEP 01: 환경 설정 &#8212; DDD Seoul 2024 - Power BI를 통해 2024 파리 올림픽 즐겨보기</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/01-setup';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="STEP 02: 데이터 모델링" href="02-data-modeling.html" />
+    <link rel="prev" title="Power BI를 통해 2024 파리 올림픽 즐겨보기" href="../README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DDD Seoul 2024 - Power BI를 통해 2024 파리 올림픽 즐겨보기</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Power BI를 통해 2024 파리 올림픽 즐겨보기
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">STEP 01: 환경 설정</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-data-modeling.html">STEP 02: 데이터 모델링</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-create-measures.html">STEP 03: 측정값 만들기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-data-visualization-part1.html">STEP 04: 데이터 시각화 part1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-data-visualization-part2.html">STEP 05: 데이터 시각화 part2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-data-visualization-part3.html">STEP 06: 데이터 시각화 part3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-data-visualization-part4.html">STEP 07: 데이터 시각화 part4</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop/issues/new?title=Issue%20on%20page%20%2Fdocs/01-setup.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/01-setup.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>STEP 01: 환경 설정</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-bi-service">1.1 Power BI Service 로그인 하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.2 Power BI Service 언어 설정 바꾸기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.3 실습용 파일 Power BI Service에 업로드하기</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="step-01">
+<h1>STEP 01: 환경 설정<a class="headerlink" href="#step-01" title="Link to this heading">#</a></h1>
+<p>이번 단계에서는 워크샵 진행을 위한 환경을 구축합니다.</p>
+<section id="power-bi-service">
+<h2>1.1 Power BI Service 로그인 하기<a class="headerlink" href="#power-bi-service" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>최신 버전의 Microsoft Edge 또는 Google Chrome 브라우저를 실행합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">n</span></code>을 눌러 Microsoft Edge의 InPrivate 모드 또는 Google Chrome의  Incognito 모드를 실행합니다.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Power BI Service를 이미 사용 중인 경우 노트북에 회사 또는 학교 계정으로 로그인 되어 있을 수 있으므로, 로그인 되어 있지 않은 InPrivate/Incognito 모드를 통해 워크샵을 진행할 예정입니다.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">https://app.powerbi.com/</span></code> 으로 접속합니다.</p></li>
+<li><p>로그인 화면에서 안내받은 이메일을 입력하고 <code class="docutils literal notranslate"><span class="pre">Submit</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-001.png" /></p></li>
+<li><p>안내받은 비밀번호를 입력하고 <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">in</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-002.png" /></p></li>
+<li><p>아래와 같은 Action Required 화면이 나오면 <code class="docutils literal notranslate"><span class="pre">Ask</span> <span class="pre">later</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-003.png" /></p></li>
+<li><p>아래와 같은 Stay signed in? 화면이 나오면 <code class="docutils literal notranslate"><span class="pre">Yes</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-004.png" /></p></li>
+</ol>
+</section>
+<section id="id1">
+<h2>1.2 Power BI Service 언어 설정 바꾸기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>아래와 같은 화면이 나오면 정상적으로 로그인을 완료한 것입니다. 만약 아래와 같이 UI가 영어로 나오고 있다면, 언어 설정을 한국어로 바꾸기 위해 우측 상단에 톱니바퀴 모양을 클릭한 후 <code class="docutils literal notranslate"><span class="pre">General</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-005.png" /></p></li>
+<li><p>상단에 나오는 <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">display</span> <span class="pre">language</span></code> 버튼을 클릭하면 <code class="docutils literal notranslate"><span class="pre">Languages</span></code> 목록이 뜹니다. 해당 목록에서 <code class="docutils literal notranslate"><span class="pre">한국어</span></code>를 찾은 뒤 클릭하여 선택하고, 마지막으로 <code class="docutils literal notranslate"><span class="pre">Select</span></code>를 클릭합니다.
+<img alt="" src="../_images/01-setup-006.png" /></p></li>
+<li><p>웹페이지가 다시 로드 되면서 UI가 한국어로 바뀐 것을 확인하실 수 있습니다.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>1.3 실습용 파일 Power BI Service에 업로드하기<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>실습에 필요한 파일을 Power BI Service에 업로드하기 위해 좌측 메뉴에서 <code class="docutils literal notranslate"><span class="pre">작업</span> <span class="pre">영역</span></code>을 클릭합니다. <code class="docutils literal notranslate"><span class="pre">작업</span> <span class="pre">영역</span></code> 패널이 나타나면 상단에 있는 <code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-007.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code> 화면으로 이동했을 때 아래와 같은 <code class="docutils literal notranslate"><span class="pre">작업</span> <span class="pre">흐름</span> <span class="pre">소개(미리</span> <span class="pre">보기)</span></code> 팝업창이 뜨면 <code class="docutils literal notranslate"><span class="pre">확인</span></code> 버튼을 눌러 팝업창을 제거합니다.
+<img alt="" src="../_images/01-setup-008.png" /></p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Power BI Service에 추가된 여러 새로운 기능들을 홍보하기 위해 작업하는 도중 팝업창이 뜰 수 있습니다. 이러한 팝업창은 <code class="docutils literal notranslate"><span class="pre">확인</span></code> 버튼 또는 <code class="docutils literal notranslate"><span class="pre">X</span></code> 버튼을 눌러 없애주시면 됩니다.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code>의 화면이 두 개로 분할된 것을 볼 수 있습니다. <code class="docutils literal notranslate"><span class="pre">작업</span> <span class="pre">흐름</span> <span class="pre">소개</span></code>라는 새로운 기능 때문에 분할되어 나타납니다. 해당 기능은 본 워크샵에서는 사용하지 않기 때문에 숨김 처리 할 것입니다. <code class="docutils literal notranslate"><span class="pre">작업</span> <span class="pre">흐름</span> <span class="pre">표시</span> <span class="pre">또는</span> <span class="pre">숨기기</span></code> 팝업창이 뜨면 <code class="docutils literal notranslate"><span class="pre">확인</span></code> 버튼을 눌러 제거해주고, 우측에 있는 위로 방향 화살표 아이콘을 클릭해 줍니다. 화면이 통합된 것을 확인하실 수 있습니다. 이제 실습에 필요한 파일을 다운로드 받기 위해 브라우저에서 새로운 탭을 실행합니다.
+<img alt="" src="../_images/01-setup-009.png" /></p></li>
+<li><p>새로운 탭이 열리면 주소창에 <code class="docutils literal notranslate"><span class="pre">https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop/raw/main/data/dataset-2024-paris-olympic.pbix</span></code>를 입력합니다. 엔터를 누르면 <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic.pbix</span></code>파일이 다운로드 되는 것을 확인하실 수 있습니다. 파일이 다운로드 된 후 해당 탭의 <code class="docutils literal notranslate"><span class="pre">X</span></code>버튼을 눌러 탭을 종료해줍니다.
+<img alt="" src="../_images/01-setup-010.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code>이 열려져 있던 탭으로 돌아와서 다운로드 받은 파일을 업로드 하기 위해 <code class="docutils literal notranslate"><span class="pre">업로드</span></code> 버튼을 클릭합니다. 그리고 <code class="docutils literal notranslate"><span class="pre">찾아보기</span></code> 버튼을 클릭합니다.
+<img alt="" src="../_images/01-setup-011.png" /></p></li>
+<li><p>파일 선택 창이 뜨면 앞서 다운로드 받은 <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic.pbix</span></code>파일이 존재하는 폴더로 이동합니다. 윈도우즈 사용자의 경우 기본 브라우저 설정값으로 사용중이라면 <code class="docutils literal notranslate"><span class="pre">다운로드</span></code> 폴더에 해당 파일이 존재할 것입니다. 적절한 폴더로 이동하여 다운로드 받은 <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic.pbix</span></code>파일을 선택합니다. 그리고 나서 <code class="docutils literal notranslate"><span class="pre">Open</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">열기</span></code> 버튼을 누릅니다.
+<img alt="" src="../_images/01-setup-012.png" /></p></li>
+<li><p>아래 이미지와 같이 두 개의 구성요소가 <code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code>에 생성됩니다. <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic</span></code> 보고서가 1개 생성되었고, <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic</span></code> 의미 체계 모델이 1개 생성되었습니다. 의미 체계 모델에는 데이터들이 저장되어 있으며 해당 데이터를 기반으로 시각화된 결과물들이 보고서에 저장됩니다. 구성요소간 구분을 더 쉽게 하기 위해 보고서 이름을 바꿔주겠습니다. <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic</span></code> 보고서를 클릭합니다.
+<img alt="" src="../_images/01-setup-013.png" /></p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>의미 체계 모델이 아니라, 보고서를 클릭합니다. 구성요소 간의 이름이 동일하기 때문에 헷갈릴 수 있습니다.</p>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>보고서 내부 화면으로 들어오면 좌측 상단에 <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic</span></code> 이름을 클릭합니다. 이름을 편집할 수 있는 팝업창이 뜹니다. 해당 팝업창에서 이름을 <code class="docutils literal notranslate"><span class="pre">report-2024-paris-olympic</span></code>로 변경합니다. 그리고 팝업창 외부의 하얀색 공간을 아무 곳이나 눌러주면 팝업창이 닫히면서 변경된 이름으로 저장됩니다.
+<img alt="" src="../_images/01-setup-014.png" /></p></li>
+<li><p>좌측 메뉴 중 <code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code>을 클릭합니다.
+<img alt="" src="../_images/01-setup-015.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">내</span> <span class="pre">작업</span> <span class="pre">영역</span></code>으로 돌아오면 아래 이미지 처럼 <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic</span></code> 의미 체계 모델 1개와 <code class="docutils literal notranslate"><span class="pre">report-2024-paris-olympic</span></code> 보고서 1개가 존재하는 것을 확인하실 수 있습니다.
+<img alt="" src="../_images/01-setup-016.png" /></p></li>
+<li><p>아래 이미지 처럼 <code class="docutils literal notranslate"><span class="pre">dataset-2024-paris-olympic.pbix</span></code> 대시보드 구성요소가 나타날 수도 있습니다. 해당 구성요소는 불필요한 구성요소 이므로 삭제를 해줍니다. <code class="docutils literal notranslate"><span class="pre">...</span></code> 버튼을 클릭한 뒤 <code class="docutils literal notranslate"><span class="pre">삭제</span></code>를 클릭합니다. <code class="docutils literal notranslate"><span class="pre">대시보드</span> <span class="pre">삭제</span></code> 팝업창이 뜨면 <code class="docutils literal notranslate"><span class="pre">삭제</span></code>를 눌러 해당 구성요소를 삭제합니다.
+<img alt="" src="../_images/01-setup-017.png" /></p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>.pbix 확장자명으로된 대시보드가 불필요한 것입니다. 다른 구성요소를 삭제하지 않도록 주의하셔야 합니다.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>지금 당장 해당 대시보드 구성요소가 나타나지 않더라도, 다른 작업을 할 때 나타날 수가 있습니다. 나타난다면 삭제를 해주면 됩니다.</p>
+</div>
+<p>축하합니다. 환경 설정을 모두 완료하셨습니다.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Power BI를 통해 2024 파리 올림픽 즐겨보기</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02-data-modeling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">STEP 02: 데이터 모델링</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-bi-service">1.1 Power BI Service 로그인 하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.2 Power BI Service 언어 설정 바꾸기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.3 실습용 파일 Power BI Service에 업로드하기</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tony (Sungjin) Ahn
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

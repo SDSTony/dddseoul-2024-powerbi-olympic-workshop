@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>STEP 07: 데이터 시각화 part4 &#8212; DDD Seoul 2024 - Power BI를 통해 2024 파리 올림픽 즐겨보기</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/07-data-visualization-part4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="STEP 06: 데이터 시각화 part3" href="06-data-visualization-part3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">DDD Seoul 2024 - Power BI를 통해 2024 파리 올림픽 즐겨보기</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Power BI를 통해 2024 파리 올림픽 즐겨보기
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-setup.html">STEP 01: 환경 설정</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-data-modeling.html">STEP 02: 데이터 모델링</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-create-measures.html">STEP 03: 측정값 만들기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-data-visualization-part1.html">STEP 04: 데이터 시각화 part1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-data-visualization-part2.html">STEP 05: 데이터 시각화 part2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-data-visualization-part3.html">STEP 06: 데이터 시각화 part3</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">STEP 07: 데이터 시각화 part4</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/SDSTony/dddseoul-2024-powerbi-olympic-workshop/issues/new?title=Issue%20on%20page%20%2Fdocs/07-data-visualization-part4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/07-data-visualization-part4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>STEP 07: 데이터 시각화 part4</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1 분산형 차트 추가하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.2 누적 세로 막대형 차트 추가하기</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="step-07-part4">
+<h1>STEP 07: 데이터 시각화 part4<a class="headerlink" href="#step-07-part4" title="Link to this heading">#</a></h1>
+<p>이번 실습에서는 종목 세부 분석 페이지를 구축해보겠습니다.</p>
+<section id="id1">
+<h2>7.1 분산형 차트 추가하기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>붙여넣기(Ctrl + V)를 실행하여 앞서 복사해온 카드 시각적 개체를 추가합니다. 그리고 <code class="docutils literal notranslate"><span class="pre">필드</span></code>에 있는 <code class="docutils literal notranslate"><span class="pre">텍스트_메달</span> <span class="pre">세부</span> <span class="pre">분석</span></code> 필드를 제거합니다.
+<img alt="" src="../_images/07-data-visualization-part4-001.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">텍스트_종목</span> <span class="pre">세부</span> <span class="pre">분석</span></code> 필드를 카드 시각적 개체에 추가합니다. 그리고 비어 있는 캔버스를 한번 클릭한 후 아래 이미지의 3번을 참고하여 분산형 차트를 추가합니다.
+<img alt="" src="../_images/07-data-visualization-part4-002.png" /></p></li>
+<li><p>아래 이미지를 참고하여 적절한 필드들을 분산형 차트의 적절한 위치에 추가합니다.
+<img alt="" src="../_images/07-data-visualization-part4-003.png" /></p></li>
+<li><p>아래 이미지를 참고하여 <code class="docutils literal notranslate"><span class="pre">범주</span> <span class="pre">레이블</span></code>을 활성화 합니다. 그리고 분산형 차트에 있는 거품 위에 마우스를 올려보면 <code class="docutils literal notranslate"><span class="pre">최대</span> <span class="pre">메달</span> <span class="pre">비중(싹쓸이</span> <span class="pre">비율)</span></code> 값이 소수점으로 나오고 있습니다. 백분율로 만들어 주기 위해 데이터 모델링 탭으로 다시 이동합니다.
+<img alt="" src="../_images/07-data-visualization-part4-004.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">최대</span> <span class="pre">메달</span> <span class="pre">비중(싹쓸이</span> <span class="pre">비율)</span></code> 필드를 클릭한 후 <code class="docutils literal notranslate"><span class="pre">백분율</span> <span class="pre">형식</span></code>을 활성화 합니다. 그리고 다시 보고서 편집 화면으로 돌아갑니다.
+<img alt="" src="../_images/07-data-visualization-part4-005.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">최대</span> <span class="pre">메달</span> <span class="pre">비중(싹쓸이</span> <span class="pre">비율)</span></code> 값이 백분율 형태로 나오는 것을 확인합니다. 그리고 비어 있는 캔버스를 한번 눌러주고 아래 이미지의 2번을 참고하여 <code class="docutils literal notranslate"><span class="pre">누적</span> <span class="pre">세로</span> <span class="pre">막대형</span> <span class="pre">차트</span></code>를 추가합니다.
+<img alt="" src="../_images/07-data-visualization-part4-006.png" /></p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>7.2 누적 세로 막대형 차트 추가하기<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>아래 이미지를 참고하여 적절한 필드들을 <code class="docutils literal notranslate"><span class="pre">누적</span> <span class="pre">세로</span> <span class="pre">막대형</span> <span class="pre">차트</span></code>에 추가합니다.
+<img alt="" src="../_images/07-data-visualization-part4-007.png" /></p></li>
+<li><p>분산형 차트에 있는 거품 중 한 개를 클릭합니다. Power BI 특성 상 시각적 개체간 상호작용이 기본으로 활성화 되어 있기 때문에 막대 그래프에도 필터링이 적용되어 ‘양궁’ 종목에 해당하는 메달 데이터만 강조 표시 되는 것을 확인할 수 있습니다.
+<img alt="" src="../_images/07-data-visualization-part4-008.png" /></p></li>
+<li><p>좀 더 접근성 좋게 하기 위해 강조 표시 되신 필터링이 되도록 변경해보겠습니다. 분산형 차트를 클릭한 후 아래 이미지를 참고하여 <code class="docutils literal notranslate"><span class="pre">상호</span> <span class="pre">작용</span> <span class="pre">편집</span></code> 기능을 활성화 합니다.
+<img alt="" src="../_images/07-data-visualization-part4-009.png" /></p></li>
+<li><p>활성화가 된 후 막대형 차트 위에 아이콘들이 표시되는 것을 확인할 수 있습니다. 아래 이미지를 참고하여 적절한 아이콘을 클릭한 후 분산형 차트 상의 거품을 다시 한 번 눌러줍니다.
+<img alt="" src="../_images/07-data-visualization-part4-010.png" /></p></li>
+<li><p>이제는 강조 표시가 아니라 필터링이 되어서 특정 종목에서 메달을 수상한 국가들만 시각화 된 것을 볼 수 있습니다. 상호 작용 편집 기능은 더 이상 필요 없기 때문에 아래 이미지를 참고하여 비활성화 하겠습니다.
+<img alt="" src="../_images/07-data-visualization-part4-011.png" /></p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>비활성화 하지 않으면 시각적 개체 우측 상단에 아이콘이 계속 나타나므로, 작업 중 불편할 수 있습니다.</p>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>막대 그래프 상에 있는 막대 위에 마우스를 올려 보면 <code class="docutils literal notranslate"><span class="pre">합계</span> <span class="pre">합계개</span></code> 부분을 통해 특정 국가가 특정 종목에 대해 획득한 메달 개수를 확인할 수 있습니다. 해당 부분을 백분율로 보기 위해선 아래 이미지를 참고하여 <code class="docutils literal notranslate"><span class="pre">총합계의</span> <span class="pre">백분율</span></code>을 선택합니다.
+<img alt="" src="../_images/07-data-visualization-part4-012.png" /></p></li>
+<li><p>백분율로 나타나는 것을 아래 이미지를 통해 확인할 수 있습니다. 백분율과 이전에 나왔던 메달 개수를 함께 표시하고자 한다면 아래 이미지를 참고하여 <code class="docutils literal notranslate"><span class="pre">'국가별</span> <span class="pre">종목별</span> <span class="pre">메달</span> <span class="pre">수'[합계]</span></code> 필드를 <code class="docutils literal notranslate"><span class="pre">도구</span> <span class="pre">설명</span></code>에 추가합니다.
+<img alt="" src="../_images/07-data-visualization-part4-013.png" /></p></li>
+<li><p>백분율과 메달 개수가 함께 막대 그래프 상에 나오는 것을 확인할 수 있습니다. 이제 아래 이미지를 참고하여 그래프들의 제목을 수정하겠습니다. 분산형 차트는 <code class="docutils literal notranslate"><span class="pre">종목별</span> <span class="pre">메달당</span> <span class="pre">국가</span> <span class="pre">수</span> <span class="pre">및</span> <span class="pre">싹쓸이</span> <span class="pre">비율</span></code>로 편집하고 막대 그래프는 <code class="docutils literal notranslate"><span class="pre">국가별</span> <span class="pre">메달</span> <span class="pre">비중</span></code>으로 편집합니다.
+<img alt="" src="../_images/07-data-visualization-part4-014.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">홈</span></code> 버튼을 클릭해서 <code class="docutils literal notranslate"><span class="pre">홈</span></code> 페이지로 이동합니다. 그리고 나서 아래 이미지를 참고하여 우측 상단에 저장 버튼을 눌러 줍니다.
+<img alt="" src="../_images/07-data-visualization-part4-015.png" /></p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>저장 버튼을 눌렀을 때 위치하고 있던 페이지가 랜딩 페이지로 설정 됩니다.</p>
+</div>
+<ol class="arabic simple" start="10">
+<li><p>저장이 완료되면 좌측 상단의 <code class="docutils literal notranslate"><span class="pre">읽기용</span> <span class="pre">보기</span></code>를 누릅니다.
+<img alt="" src="../_images/07-data-visualization-part4-016.png" /></p></li>
+<li><p>편집화면에서 빠져 나왔습니다. 현재 화면은 회사 내에서 해당 보고서를 공유할 때 공유 받은 사람이 보게 되는 화면과 같습니다. 좌측 <code class="docutils literal notranslate"><span class="pre">페이지</span></code> 메뉴를 탐색하여 구축한 보고서를 맘껏 탐색해 보세요!
+<img alt="" src="../_images/07-data-visualization-part4-017.png" /></p></li>
+</ol>
+<p>축하합니다! 워크샵을 모두 완료하셨습니다.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06-data-visualization-part3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">STEP 06: 데이터 시각화 part3</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1 분산형 차트 추가하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.2 누적 세로 막대형 차트 추가하기</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tony (Sungjin) Ahn
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
