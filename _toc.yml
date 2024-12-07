@@ -1,0 +1,13 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README
+chapters: 
+- file: docs/01-setup.md
+- file: docs/02-data-modeling.md
+- file: docs/03-create-measures.md
+- file: docs/04-data-visualization-part1.md
+- file: docs/05-data-visualization-part2.md
+- file: docs/06-data-visualization-part3.md
+- file: docs/07-data-visualization-part4.md

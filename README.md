@@ -1,41 +1,38 @@
-# 워크샵 이름
+# Power BI를 통해 2024 파리 올림픽 즐겨보기
 
-<!--
-이 README 파일에 아래 내용을 포함시켜주세요.
+정보기술의 발달로 인해 스포츠에서 발생하는 각종 데이터들을 개인이 분석해볼 수 있는 시대가 열렸습니다. 스포츠 경기를 시청하면서 1차적으로 즐기고, 연관된 데이터들을 분석해보면서 2차적으로 즐길 수 있는 시대입니다. 이번 워크숍에서는 Power BI를 활용해 2024 파리 올림픽 메달 데이터를 분석해봅니다. 해당 과정을 통해 2024 파리 올림픽을 숫자로도 즐겨보고 더 나아가 Power BI 개념 또한 익혀보고자 합니다.
 
-- 워크샵 소개
-- 워크샵 목표
-- 워크샵 사전 준비사항
-- 워크샵 진행 방법
-- 추가 참고 자료
--->
+Power BI Desktop 무료로 누구나 설치해서 사용가능 하다는 특징이 있습니다. 하지만 2024년 12월 기준 윈도우즈에서만 설치가 가능합니다. 본 워크샵에서는 접근성 및 포용성을 고려하여 웹 브라우저만 있으면 사용 가능한 Power BI Service를 사용해 실습을 진행합니다. 
 
-*워크샵에 대한 간략한 소개 문구를 작성해 주세요*
+Power BI Service로 진행함에 따라 데이터 수집 과정은 생략하고 데이터 모델링 부터 진행합니다.
 
 ## 워크샵 목표
 
-*워크샵 목표를 작성해주세요.*
+- Power BI Service에서 데이터 모델링을 할 수 있습니다.
+- Power BI Service에서 측정값을 추가할 수 있습니다.
+- Power BI Service에서 데이터 시각화를 할 수 있습니다.
 
 ## 워크샵 사전 준비사항
 
-*워크샵을 진행하기 위해 워크샵 참가자에게 필요한 사전 준비사항을 작성해주세요. 자세하면 자세할 수록 좋습니다.*
+- 최신 버전의 Microsoft Edge 또는 Google Chrome 브라우저
+- Microsoft Fabric Free 라이선스가 부착된 M365 계정 (워크샵 참가자에게 제공 예정)
 
 ## 워크샵 진행 방법
 
-*워크샵을 진행하는 방법을 작성해주세요. 가능하다면 [`docs`](./docs) 문서로 링크를 걸어주는 것이 좋습니다.*
+- 아래 단계별로 워크샵을 진행합니다. 각 단계별로 자기주도형 학습을 하며, 워크샵 진행 전 진행자가 안내 후 개인별로 학습을 진행합니다.
+
+  | 순서                         | 제목                                           |
+  |------------------------------|------------------------------------------------|
+  | [STEP 01](./docs/01-setup.md) | 환경 설정                             |
+  | [STEP 02](./docs/02-data-modeling.md) | 데이터 모델링     |
+  | [STEP 03](./docs/03-create-measures.md) | 측정값 만들기                |
+  | [STEP 04](./docs/04-data-visualization-part1.md) | 데이터 시각화 part1               |
+  | [STEP 05](./docs/05-data-visualization-part2.md) | 데이터 시각화 part2      |
+  | [STEP 06](./docs/06-data-visualization-part3.md) | 데이터 시각화 part3                  |
+  | [STEP 07](./docs/06-data-visualization-part3.md) | 데이터 시각화 part4                  |
 
 ## 추가 참고 자료
 
-*추가로 참고할만한 자료가 있다면 작성해주세요.*
+- [[미니 코스] 🏅2024 파리 올림픽 데이터를 활용한 Power BI 데이터 시각화 강의](https://youtu.be/mUuX7GKiHa0?si=uhm3_UjtaIPTmsJN)
 
----
-
-*아래는 다 작성하신 후 삭제하시면 됩니다*
-
-## 리포지토리 구조
-
-- [`.devcontainer`](./.devcontainer): 워크샵을 위한 개발 환경을 설정합니다.
-  - [GitHub Codespaces](https://github.com/features/codespaces) 또는 [Visual Studio Code Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)를 사용할 때 필요합니다.
-  - 더 자세한 내용은 [DevContainers](https://containers.dev)를 참조하세요.
-- [`docs`](./docs): 워크샵 진행에 필요한 문서를 저장합니다.
-- [`save-points`](./save-points): 워크샵 진행 중 중간 결과물을 저장합니다.
+- [경영정보시각화 실기 Power BI 도서](https://www.dataedu.kr/%ea%b3%b5%ec%a7%80%ec%82%ac%ed%95%ad-adspadp-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b6%84%ec%84%9d%ec%a4%80%ec%a0%84%eb%ac%b8%ea%b0%80/?uid=5581&mod=document)
