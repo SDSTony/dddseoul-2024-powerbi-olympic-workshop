@@ -33,8 +33,8 @@ Power BI Service로 진행함에 따라 데이터 수집 과정은 생략하고 
 
 ## 추가 참고 자료
 
-- [DDD Seoul 2024](https://dddseoul.kr/)
+- [경영정보시각화 실기 Power BI 도서](https://cafe.naver.com/dataedubooks/219)
 
 - [[미니 코스] 🏅2024 파리 올림픽 데이터를 활용한 Power BI 데이터 시각화 강의](https://youtu.be/mUuX7GKiHa0?si=uhm3_UjtaIPTmsJN)
 
-- [경영정보시각화 실기 Power BI 도서](https://www.dataedu.kr/%ea%b3%b5%ec%a7%80%ec%82%ac%ed%95%ad-adspadp-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b6%84%ec%84%9d%ec%a4%80%ec%a0%84%eb%ac%b8%ea%b0%80/?uid=5581&mod=document)
+- [DDD Seoul 2024](https://dddseoul.kr/)
