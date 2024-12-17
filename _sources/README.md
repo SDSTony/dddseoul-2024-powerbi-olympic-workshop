@@ -6,6 +6,8 @@ Power BI Desktop 무료로 누구나 설치해서 사용가능 하다는 특징�
 
 Power BI Service로 진행함에 따라 데이터 수집 과정은 생략하고 데이터 모델링 부터 진행합니다.
 
+본 워크샵은 [DDD Seoul 2024 컨퍼런스](https://dddseoul.kr/speakers/sungjinahn)에서 진행되었습니다. 
+
 ## 워크샵 목표
 
 - Power BI Service에서 데이터 모델링을 할 수 있습니다.
